@@ -1,40 +1,23 @@
+// 元素渲染
 import React from 'react'
 import ReactDOM from 'react-dom'
 
-// 函数会在return处停止运行
-function getGreet(user){
-	if(user){
-		// 像 "<h1>hello {format(user)}<h1>"  这种JSX代码可以在if语句或者在for语句中进行执行  
-		return <h1>hello {format(user)}</h1>;
-	}
-	return <h1>hello ，stranger </h1>
+// DOM是用来操纵html元素的
+// <div id = "kong"></div>
 
+react只会更新它需要的部分 
+// reactdom会将元素和它的子元素  与之前的状态进行比较  并且只会进行必要的更新来使达到预期的状态
+function tick() {
+	const element = (
+		<div>
+			<h1>hello world</h1>
+			<h2>It is {new Date().toLocaleTimeString()}.</h2>
+		</div>
+		)
+		
+	ReactDOM.render(element, document.getElementById('root'))
 }
 
-function format(user){
-	return user.fristName + '' + user.lastName;
-}
 
-const user = {
-	fristName : 'kongge',
-	lastName  : 'kongge',
-};
-
-const element = (
-	<div>
-	<h1>
-		{ getGreet(user)}
-	</h1>
-		<h1>这是一个一级标题</h1>
-		<h2>这是一个二级标题</h2>
-	</div>
-	
-	);
-
-
-// DOM的作用就是为了操作html中的元素
-
-ReactDOM.render(
-	element,
-	document.getElementById('root')
-);
+// 每一千毫秒调用一次
+setInterval(tick, 1000);
